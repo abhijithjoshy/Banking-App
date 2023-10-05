@@ -15,12 +15,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+
+Route::get('/deposit', function () {
+    return view('deposit');
+})->middleware(['auth', 'verified'])->name('deposit');
+
+
+Route::get('/withdraw', function () {
+    return view('withdraw');
+})->middleware(['auth', 'verified'])->name('withdraw');
+
+
+Route::get('/transfer', function () {
+    return view('transfer');
+})->middleware(['auth', 'verified'])->name('transfer');
+
+
+Route::get('/statement', function () {
+    return view('statement');
+})->middleware(['auth', 'verified'])->name('statement');
+
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +54,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
