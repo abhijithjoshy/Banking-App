@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BankingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,12 +19,8 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
-
+Route::get('/dashboard',[BankingController::class, 'dashboard']
+)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/deposit', function () {
     return view('deposit');
@@ -40,9 +37,13 @@ Route::get('/transfer', function () {
 })->middleware(['auth', 'verified'])->name('transfer');
 
 
-Route::get('/statement', function () {
-    return view('statement');
-})->middleware(['auth', 'verified'])->name('statement');
+Route::get('/statement',[BankingController::class,'statement_index'])->middleware(['auth', 'verified'])->name('statement');
+
+Route::post('deposit',[BankingController::class,'deposit']);
+Route::post('withdraw',[BankingController::class,'withdraw']);
+Route::post('transfer',[BankingController::class,'transfer']);
+
+
 
 
 
