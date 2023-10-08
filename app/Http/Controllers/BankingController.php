@@ -128,8 +128,8 @@ class BankingController extends Controller
     {
         $user = auth()->user();
 
-        $statements = Statement::where('user_id',$user->id)->get();
+        $statements = Statement::where('user_id', $user->id)->get();
 
-        return view('statement',['statements' => $statements]);
+        return view('statement', ['statements' => $statements]);
     }
 }
